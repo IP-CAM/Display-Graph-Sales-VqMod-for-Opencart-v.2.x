@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <id>PHP Chart</id>
+    <version>1.0.0</version>
+    <vqmver>2.4.1</vqmver>
+    <author><![CDATA[http://4techs.net]]></author>
+    <file name="admin/controller/sale/order.php">
+        <!-- template data -->
+
+
+    </file>
+    <file name="admin/view/template/common/menu.tpl">
+        <operation>
+            <search position="replace" regex="true">
+                <![CDATA[~(<li><a[^>]+href="<\?php echo \$order; \?>"[^>]*>)~]]></search>
+            <add><![CDATA[
+      <li><a href="<?php echo $title_php_chart; ?>"><?php echo $text_php_chart; ?></a></li>
+			$1
+]]></add>
+        </operation>
+    </file>
+    <file name="admin/controller/common/menu.php">
+        <operation error="skip">
+            <search position="replace" regex="true"><![CDATA[~(.*\$data\['order'\] =.+)~]]></search>
+            <add><![CDATA[
+			$data['title_php_chart'] = $this->url->link('module/phpchart', 'token=' . $this->session->data['token'], 'SSL');
+      $1
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" regex="true"><![CDATA[~(\$data\['text_order'\] =.+)~]]></search>
+            <add><![CDATA[
+            $data['text_php_chart'] = $this->language->get('text_php_chart');
+            $1
+]]></add>
+        </operation>
+    </file>
+
+
+</modification>
