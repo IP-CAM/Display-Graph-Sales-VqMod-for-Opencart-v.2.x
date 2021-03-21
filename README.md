@@ -1,5 +1,5 @@
 # PHPchart
-موديل لعرض المبيعات شريط بياني
+Model to display graph sales 
 
 
 <img src="screenShot/Screen.png" />
